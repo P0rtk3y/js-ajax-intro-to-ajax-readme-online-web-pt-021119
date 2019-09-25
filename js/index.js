@@ -1,17 +1,13 @@
 // your code here
-function showRepositories() {
-  //this is set to the XMLHttpRequest object that fired the event
-  console.log(this.responseText);
-}
-
 function getRepositories() {
-  const req = new XMLHttpRequest();
-  req.open('GET', 'https://api.github.com/users/octocat/repos');
-  req.send();
+  const req = new XMLHttpRequest()
+  req.addEventListener("load", showRepositories);
+  req.open("GET", 'https://api.github.com/users/octocat/repos')
+  req.send()
 }
 
 function showRepositories() {
-  var repos = JSON.parse(this.responseText);
+ var repos = JSON.parse(this.responseText);
   console.log(repos);
   const repoList = `<ul>${repos
     .map(
